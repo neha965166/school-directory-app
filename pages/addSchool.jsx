@@ -22,9 +22,11 @@ export default function AddSchool() {
       });
 
       const res = await fetch("/api/schools/add", {
-        method: "POST",
-        body: formData,
-      });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(data),
+});
+
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Failed");
       setServerMsg("✅ " + json.message);
